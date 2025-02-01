@@ -47,9 +47,7 @@ body {
   margin: 0.5rem;
   border-radius: 50px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
 
@@ -86,9 +84,7 @@ body {
   margin: 0.5rem;
   border-radius: 50px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
 
