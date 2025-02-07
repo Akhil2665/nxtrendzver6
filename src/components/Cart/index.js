@@ -11,7 +11,7 @@ const Cart = () => (
     {value => {
       const {cartList, removeAllCartItems} = value
       const onClickOnRemoveAll = () => removeAllCartItems()
-      const cartCount = cartList.length
+      const cartCount = Array.isArray(cartList) ? cartList.length : 0
       const showEmptyView = cartCount === 0
       const cartValueList = cartList.map(
         eachItem => eachItem.price * eachItem.quantity,

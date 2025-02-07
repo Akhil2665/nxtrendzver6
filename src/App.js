@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
@@ -24,14 +24,23 @@ class App extends Component {
         ? {...eachItem, quantity: eachItem.quantity + product.quantity}
         : eachItem,
     )
-    const newCartList = updateQuantityCartList.filter(
+
+    const existingProduct = cartList.find(
       eachItem => eachItem.id === product.id,
     )
-    if (newCartList.length !== 0) {
+    if (existingProduct) {
       this.setState({cartList: updateQuantityCartList})
     } else {
       this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
     }
+    // const newCartList = updateQuantityCartList.filter(
+    //   eachItem => eachItem.id === product.id,
+    // )
+    // if (newCartList.length !== 0) {
+    //   this.setState({cartList: updateQuantityCartList})
+    // } else {
+    //   this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
+    // }
   }
 
   removeCartItem = id => {
@@ -47,8 +56,13 @@ class App extends Component {
   decrementCartItemQuantity = id => {
     const {cartList} = this.state
 
+    // const updatedList = cartList.map(eachItem =>
+    //   eachItem.id === id && eachItem.quantity > 0
+    //     ? {...eachItem, quantity: eachItem.quantity - 1}
+    //     : eachItem,
+    // )
     const updatedList = cartList.map(eachItem =>
-      eachItem.id === id && eachItem.quantity > 0
+      eachItem.id === id && eachItem.quantity > 1
         ? {...eachItem, quantity: eachItem.quantity - 1}
         : eachItem,
     )
@@ -83,32 +97,30 @@ class App extends Component {
     const {cartList} = this.state
 
     return (
-      <BrowserRouter>
-        <CartContext.Provider
-          value={{
-            cartList,
-            addCartItem: this.addCartItem,
-            removeCartItem: this.removeCartItem,
-            removeAllCartItems: this.removeAllCartItems,
-            incrementCartItemQuantity: this.incrementCartItemQuantity,
-            decrementCartItemQuantity: this.decrementCartItemQuantity,
-          }}
-        >
-          <Switch>
-            <Route exact path="/login" component={LoginForm} />
-            <ProtectedRoute exact path="/" component={Home} />
-            <ProtectedRoute exact path="/products" component={Products} />
-            <ProtectedRoute
-              exact
-              path="/products/:id"
-              component={ProductItemDetails}
-            />
-            <ProtectedRoute exact path="/cart" component={Cart} />
-            <Route path="/not-found" component={NotFound} />
-            <Redirect to="not-found" />
-          </Switch>
-        </CartContext.Provider>
-      </BrowserRouter>
+      <CartContext.Provider
+        value={{
+          cartList,
+          addCartItem: this.addCartItem,
+          removeCartItem: this.removeCartItem,
+          removeAllCartItems: this.removeAllCartItems,
+          incrementCartItemQuantity: this.incrementCartItemQuantity,
+          decrementCartItemQuantity: this.decrementCartItemQuantity,
+        }}
+      >
+        <Switch>
+          <Route exact path="/login" component={LoginForm} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/products" component={Products} />
+          <ProtectedRoute
+            exact
+            path="/products/:id"
+            component={ProductItemDetails}
+          />
+          <ProtectedRoute exact path="/cart" component={Cart} />
+          <Route path="/not-found" component={NotFound} />
+          <Redirect to="not-found" />
+        </Switch>
+      </CartContext.Provider>
     )
   }
 }
