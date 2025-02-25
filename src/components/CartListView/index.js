@@ -7,7 +7,7 @@ import './index.css'
 const CartListView = () => (
   <CartContext.Consumer>
     {value => {
-      const {cartList = []} = value // Default to empty array if cartList is undefined
+      const {cartList = []} = value
       const cartLength = Array.isArray(cartList) ? cartList.length : 0
 
       return cartLength > 0 ? (

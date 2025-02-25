@@ -19,14 +19,15 @@ const CartItem = props => (
         removeCartItem(id)
       }
 
+      const onClickIncrementQunatity = () => incrementCartItemQuantity(id)
       const onClickDecrementQunatity = () => {
         if (quantity > 1) {
           decrementCartItemQuantity(id)
         } else {
+          decrementCartItemQuantity(id)
           removeCartItem(id)
         }
       }
-      const onClickIncrementQunatity = () => incrementCartItemQuantity(id)
       // TODO: Update the functionality to increment and decrement quantity of the cart item
 
       return (
