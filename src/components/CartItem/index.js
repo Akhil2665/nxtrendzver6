@@ -20,16 +20,7 @@ const CartItem = props => (
       }
 
       const onClickIncrementQunatity = () => incrementCartItemQuantity(id)
-      const onClickDecrementQunatity = () => {
-        if (quantity > 1) {
-          decrementCartItemQuantity(id)
-        } else {
-          decrementCartItemQuantity(id)
-          removeCartItem(id)
-        }
-      }
-      // TODO: Update the functionality to increment and decrement quantity of the cart item
-
+      const onClickDecrementQunatity = () => decrementCartItemQuantity(id)
       return (
         <li className="cart-item">
           <img className="cart-product-image" src={imageUrl} alt={title} />

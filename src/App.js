@@ -24,7 +24,6 @@ class App extends Component {
         ? {...eachItem, quantity: eachItem.quantity + product.quantity}
         : eachItem,
     )
-
     const existingProduct = cartList.find(
       eachItem => eachItem.id === product.id,
     )
@@ -55,14 +54,13 @@ class App extends Component {
 
   decrementCartItemQuantity = id => {
     const {cartList} = this.state
-
     // const updatedList = cartList.map(eachItem =>
     //   eachItem.id === id && eachItem.quantity > 0
     //     ? {...eachItem, quantity: eachItem.quantity - 1}
     //     : eachItem,
     // )
     const updatedList = cartList.map(eachItem =>
-      eachItem.id === id && eachItem.quantity > 1
+      eachItem.id === id && eachItem.quantity >= 1
         ? {...eachItem, quantity: eachItem.quantity - 1}
         : eachItem,
     )
