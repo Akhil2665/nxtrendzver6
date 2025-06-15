@@ -1,0 +1,27 @@
+.order-success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 400px;
+}
+.payment-mode-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.checkout-main-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.payment-mode-label {
+  margin-right: 10px;
+}
+.payment-input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
